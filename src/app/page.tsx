@@ -128,7 +128,8 @@ export default function Home() {
               alt="Navya"
               width={300}
               height={200}
-              className="w-full h-full object-cover "
+              className
+              ="w-full h-full object-cover "
             />
             <p className="text-lg mt-2 font-cedarville text-start text-gray-700 ">
               Jojo and Niki
