@@ -1,101 +1,173 @@
+"use client";
+
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import Image1 from "../../public/assets/All.jpg";
+import Image2 from "../../public/assets/Navya.jpg";
+import Image3 from "../../public/assets/Akshara.jpg";
+import Button from "@/components/ui/Button";
+import { BsFullscreen } from "react-icons/bs";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [showContent, setShowContent] = useState<boolean>(false);
+  const [animationComplete, setAnimationComplete] = useState<boolean>(false);
+  const [showBorder, setShowBorder] = useState<boolean>(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowBorder(true);
+
+      setTimeout(() => {
+        setAnimationComplete(true);
+
+        setTimeout(() => {
+          setShowContent(true);
+        }, 1200);
+      }, 500);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  });
+
+  return (
+    <div className="h-screen w-screen relative overflow-hidden bg-[#F5E5DA]">
+      {/* Navbar */}
+      <nav className="fixed top-0 w-full flex justify-between items-center px-10 py-4 z-50">
+        <div>
+          <Link href="/" className="text-3xl font-bold">
+            200/0
+          </Link>
+        </div>
+        <div className="space-x-10">
+          <Link href="">WORK</Link>
+          <Link href="">SERVICES</Link>
+          <Link href="">CREW</Link>
+          <Link href="">CONTACT</Link>
+        </div>
+        <div><BsFullscreen className="w-8 h-8 cursor-pointer"/></div>
+      </nav>
+
+      {/* Main Center Image */}
+      <motion.div
+        initial={{
+          width: "100vw",
+          height: "100vh",
+          x: 0,
+          y: 0,
+          rotate: 0,
+          borderWidth: 0,
+        }}
+        animate={
+          showBorder
+            ? animationComplete
+              ? {
+                  scale: 0.35,
+                  x: "calc(35vw )",
+                  y: "-27%",
+                  rotate: 5,
+                  borderWidth: "60px",
+                  width: "1400px",
+                  height: "1000px",
+                  transition: { duration: 1.2, ease: "easeInOut" },
+                }
+              : {
+                  borderWidth: "60px",
+                  transition: { duration: 0.5, ease: "easeInOut" },
+                }
+            : {}
+        }
+        className="absolute inset-0 flex items-center justify-center overflow-hidden border-gray-300 rounded-lg"
+      >
+        <motion.div className="relative overflow-hidden w-full h-full border-white rounded-lg">
+          <Image
+            src={Image1}
+            alt="Default image"
+            fill
+            className="object-cover"
+            priority
+          />
+        </motion.div>
+      </motion.div>
+
+      {showContent && (
+        <>
+          {/* Image 1 */}
+          <motion.div
+            initial={{ opacity: 0, y: "100vh", rotate: -8, scale: 0.7 }}
+            animate={{ opacity: 1, rotate: -9, y: "10vh", scale: 0.9 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 1 }}
+            className="absolute left-[61%] top-[25%] z-10 border-[20px] border-b-[70px] border-gray-300 border-solid rounded-lg shadow-lg w-[290px] h-[400px]"
           >
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src={Image3}
+              alt="Akshara"
+              width={250}
+              height={250}
+              className="w-full h-full object-cover "
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <p className="text-lg mt-2 font-cedarville  text-gray-700 text-center ">
+              Pancho and Jojo
+              <br /> working on a sign
+            </p>
+          </motion.div>
+
+          {/* Image 2 */}
+          <motion.div
+            initial={{ opacity: 0, y: "100vh", rotate: 10, scale: 0.7 }}
+            animate={{ opacity: 1, rotate: 10, y: "15vh", scale: 0.55 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 1.6 }}
+            className="absolute left-[76%] top-[-10%] z-20 
+            border-t-[65px] border-b-[125px] border-l-[30px] border-r-[30px] 
+            border-gray-300 border-solid rounded-lg shadow-lg 
+            w-[460px] h-[650px]"
           >
-            Read our docs
-          </a>
+            <Image
+              src={Image2}
+              alt="Navya"
+              width={300}
+              height={200}
+              className="w-full h-full object-cover "
+            />
+            <p className="text-lg mt-2 font-cedarville text-start text-gray-700 ">
+              Jojo and Niki
+              <br /> assembling a stand
+            </p>
+          </motion.div>
+        </>
+      )}
+
+      {showContent && (
+        <div className="flex flex-col w-[760px] absolute top-[20%] left-[3%] ">
+          {/* Main Heading */}
+          <div className="mb-8 text-5xl font-mono font-bold leading-none text-black">
+            We&apos;re a tight collective of creative thinkers, crafting unique
+            productions, <br />
+            designs, and experiences.
+          </div>
+
+          {/* Sub Heading */}
+          <div className="mb-8 flex gap-10 font-sans">
+            <p className="text-lg text-gray-700 w-1/2">
+              At 200% Studio, our approach to work is a blend of artistry,
+              precision, and collaboration. We start by immersing ourselves in
+              your vision, working closely with you to understand your goals and
+              aspirations.
+            </p>
+            <p className="text-lg text-gray-700 w-1/2">
+              We&apos;re not defined by the work we do, we&apos;re defined by
+              the people we do it with.
+            </p>
+          </div>
+
+          <div>
+            <Button className="px-10 py-1 text-white bg-red-400 rounded-full hover:bg-red-500">
+              Check our crew
+            </Button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      )}
     </div>
   );
 }
