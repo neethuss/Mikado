@@ -3,7 +3,7 @@
 This project is a recreation of the animation section from the **200% Studio** website, implementing smooth, high-performance animations using **TypeScript, Next.js, Tailwind CSS, and Framer Motion**.
 
 ## 🚀 Live Demo
-[View Deployment](will be available soon)
+[View Deployment](https://mikado-pi.vercel.app/)
 
 ## 📌 Features
 - Smooth animations using **Framer Motion**.
