@@ -23,45 +23,45 @@ export default function Home() {
 
 const mainImageX = useTransform(
   scrollYProgress,
-  [0.05, 0.2, 0.35, 0.5],
+  [0.05, 0.2, 0.35, 0.45],
   ["0%", "30%", "70%", "100%"]
 );
 
 const mainImageY = useTransform(
   scrollYProgress,
-  [0.05, 0.2, 0.35, 0.5],
+  [0.05, 0.2, 0.35, 0.45],
   ["10%", "12%", "14%", "15%"]
 );
 
 const mainImageRotate = useTransform(
   scrollYProgress,
-  [0.05, 0.2, 0.35, 0.5],
+  [0.05, 0.2, 0.35, 0.45],
   [0, 2, 3, 5]
 );
 
 const mainImageWidth = useTransform(
   scrollYProgress,
-  [0.05, 0.2, 0.35, 0.5],
+  [0.05, 0.2, 0.35, 0.45],
   ["100vw", "90vw", "80vw", "60vw"]
 );
 
 const mainImageHeight = useTransform(
   scrollYProgress,
-  [0.05, 0.2, 0.35, 0.5],
+  [0.05, 0.2, 0.35, 0.45],
   ["100vh", "90vh", "80vh", "60vh"]
 );
 
 
   // Content opacity based on scroll
-  const contentOpacity = useTransform(scrollYProgress, [0.2, 0.3], [0, 1]);
+  const contentOpacity = useTransform(scrollYProgress, [0.45, 0.5], [0, 1]);
 
   // Image 1 animations
-  const image1Opacity = useTransform(scrollYProgress, [0.3, 0.4], [0, 1]);
+  const image1Opacity = useTransform(scrollYProgress, [0.45, 0.5], [0, 1]);
   const image1Y = useTransform(scrollYProgress, [0.3, 0.4], ["100vh", "10vh"]);
   const image1Scale = useTransform(scrollYProgress, [0.3, 0.4], [0.7, 0.9]);
 
   // Image 2 animations
-  const image2Opacity = useTransform(scrollYProgress, [0.4, 0.5], [0, 1]);
+  const image2Opacity = useTransform(scrollYProgress, [0.45, 0.5], [0, 1]);
   const image2Y = useTransform(scrollYProgress, [0.4, 0.5], ["100vh", "15vh"]);
   const image2Scale = useTransform(scrollYProgress, [0.4, 0.5], [0.7, 0.55]);
 
